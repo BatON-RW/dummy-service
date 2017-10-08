@@ -1,0 +1,6 @@
+package: github.com/BatON-RW/dummy-service
+import:
+- package: github.com/Sirupsen/logrus
+  version: ~1.0.3
+- package: github.com/takama/router
+  version: ~0.6.5
