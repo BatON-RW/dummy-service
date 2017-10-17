@@ -4,12 +4,12 @@ BUILDTAGS=
 
 APP?=dummy-service
 USERSPACE?=BatON-RW
-RELEASE?=0.0.1
+RELEASE?=0.0.3
 PROJECT?=github.com/${USERSPACE}/${APP}
 GOOS?=linux
 SERVICE_PORT?=8080
 
-NAMESPACE?=BatON-RW
+NAMESPACE?=baton
 PREFIX?=${REGISTRY}/${NAMESPACE}/${APP}
 CONTAINER_NAME?=${APP}-${NAMESPACE}
 
@@ -29,10 +29,10 @@ build: vendor
 		-o ${APP}
 
 container: build
-	docker build --pull -t $(APP):$(RELEASE) .
+	docker build --pull -t $(NAMESPACE)/$(APP):$(RELEASE) .
 
 run: container
-	docker run --name ${CONTAINER_NAME} -p ${SERVICE_PORT}:${SERVICE_PORT} \
+	docker run --name ${CONTAINER_NAME} --link some-mongo:mongo -p ${SERVICE_PORT}:${SERVICE_PORT} \
 		-e "SERVICE_PORT=${SERVICE_PORT}" \
 		-d $(APP):$(RELEASE)
 

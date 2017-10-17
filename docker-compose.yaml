@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+
+  some-mongo:
+    image: mongo
+    ports: 
+      - "37017"
+    networks: 
+      - todoapp
+
+  uber-todo:
+    image: baton/dummy-service:0.0.3
+    ports:
+      - 80:8000
+    networks: 
+      - todoapp
+    depends_on:
+      - some-mongo
+
+networks:
+    todoapp:
