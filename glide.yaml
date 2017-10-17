@@ -4,3 +4,16 @@ import:
   version: ~1.0.3
 - package: github.com/takama/router
   version: ~0.6.5
+- package: golang.org/x/crypto
+  subpackages:
+  - ssh/terminal
+- package: golang.org/x/sys
+  subpackages:
+  - unix
+  - windows
+- package: gopkg.in/mgo.v2
+  subpackages:
+  - bson
+  - internal/json
+  - internal/sasl
+  - internal/scram
